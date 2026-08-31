@@ -1,6 +1,7 @@
 package github.belws.crpg.item.custom.helper;
 
 import github.belws.crpg.CapitalismRpg;
+import github.belws.crpg.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -22,17 +23,22 @@ public class PhoneOverlay {
     public static void renderPhone(RenderGuiEvent.Post event){
         GuiGraphics guiGraphics = event.getGuiGraphics();
 
-        //This is temporary until i figure out how to make it stay in its place:)
-        guiGraphics.blit(
-                PHONE_TEXTURE,
-                650,
-                300,
-                0,
-                0,
-                256,
-                256,
-                256,
-                256
-        );
+        if (Minecraft.getInstance().player == null){
+            return;
+        }
+        if (Minecraft.getInstance().player.getMainHandItem().is(ModItems.PHONE.get())) {
+            //This is temporary until i figure out how to make it stay in its place:)
+            guiGraphics.blit(
+                    PHONE_TEXTURE,
+                    650,
+                    300,
+                    0,
+                    0,
+                    256,
+                    256,
+                    256,
+                    256
+            );
+        }
     }
 }
