@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 public class PhoneOverlay {
 
     private static final ResourceLocation PHONE_TEXTURE =
-            new ResourceLocation(CapitalismRpg.MOD_ID, "gui/phone_sprite_demo_0.png");
+            new ResourceLocation(CapitalismRpg.MOD_ID, "gui/phone_on_idle.png");
 
     @SubscribeEvent
     public static void renderPhone(RenderGuiEvent.Post event){
