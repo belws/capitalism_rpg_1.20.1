@@ -28,10 +28,14 @@ public class PhoneOverlay {
         }
         if (Minecraft.getInstance().player.getMainHandItem().is(ModItems.PHONE.get())) {
             //This is temporary until i figure out how to make it stay in its place:)
+            int screenWidth = guiGraphics.guiWidth();
+            int screenHeight = guiGraphics.guiHeight();
+            int x = (screenWidth - 256);
+            int y = (screenHeight - 256);
             guiGraphics.blit(
                     PHONE_TEXTURE,
-                    650,
-                    300,
+                    x,
+                    y,
                     0,
                     0,
                     256,
