@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jline.utils.Log;
 
 import static java.lang.Thread.sleep;
 
@@ -19,7 +20,8 @@ import static java.lang.Thread.sleep;
 public class PhoneOverlay {
     private static boolean phoneWasHeld = false;
     private static float animationProgress = 0.0f;
-
+    private static long animationStartTime = 0;
+    private static final long animationDuration = 300;
 
     private static final ResourceLocation PHONE_TEXTURE =
             new ResourceLocation(CapitalismRpg.MOD_ID, "gui/phone_on_idle.png");
@@ -42,13 +44,13 @@ public class PhoneOverlay {
         if (!phoneHeld) {
             phoneWasHeld = false;
             animationProgress = 0.0f;
+            animationStartTime = 0;
             return;
         }
         if (!phoneWasHeld) {
-            animationProgress = 0.0f;
+            phoneWasHeld = true;
+            animationStartTime = System.currentTimeMillis();
         }
-
-        phoneWasHeld = true;
 
         int phoneWidth = 256;
         int phoneHeight = 256;
@@ -61,9 +63,13 @@ public class PhoneOverlay {
 
         int startY = targetY + 300; // I will play around to test this
 
-        animationProgress =
-                Math.min(animationProgress + 0.05f, 1.0f);
+        //How much time has passed since the animation started
+        long elapsedTime = System.currentTimeMillis() - animationStartTime;
 
+        //Convert elapsed time into 0.0 -> 1.0 progress
+        animationProgress = Math.min((float) elapsedTime / animationDuration, 1.0f);
+
+        //Calculate the phones current Y pos
         int currentY =
                 (int) (startY +
                         (targetY - startY) * animationProgress);
