@@ -24,13 +24,20 @@ public class PhoneOverlay {
     private static final long animationDuration = 300;
 
     private static final ResourceLocation PHONE_TEXTURE =
-            new ResourceLocation(CapitalismRpg.MOD_ID, "gui/phone_on_idle.png");
+            new ResourceLocation(
+                    CapitalismRpg.MOD_ID,
+                    "gui/phone_on_idle.png"
+            );
 
     private static final ResourceLocation PHONE_OFF_TEXTURE =
-            new ResourceLocation(CapitalismRpg.MOD_ID, "gui/phone_off_idle.png");
+            new ResourceLocation(
+                    CapitalismRpg.MOD_ID,
+                    "gui/phone_off_idle.png"
+            );
 
     @SubscribeEvent
     public static void renderPhone(RenderGuiEvent.Post event) throws InterruptedException {
+
         GuiGraphics guiGraphics = event.getGuiGraphics();
 
         if (Minecraft.getInstance().player == null){
@@ -40,16 +47,20 @@ public class PhoneOverlay {
         boolean phoneHeld =
                 Minecraft.getInstance().player
                         .getMainHandItem()
-                        .is(ModItems.PHONE.get());
+                        .is(ModItems.PHONE.get()
+                        );
+
         if (!phoneHeld) {
             phoneWasHeld = false;
             animationProgress = 0.0f;
             animationStartTime = 0;
             return;
         }
+
         if (!phoneWasHeld) {
             phoneWasHeld = true;
-            animationStartTime = System.currentTimeMillis();
+            animationStartTime =
+                    System.currentTimeMillis();
         }
 
         int phoneWidth = 256;
@@ -64,15 +75,22 @@ public class PhoneOverlay {
         int startY = targetY + 300; // I will play around to test this
 
         //How much time has passed since the animation started
-        long elapsedTime = System.currentTimeMillis() - animationStartTime;
+        long elapsedTime =
+                System.currentTimeMillis() - animationStartTime;
 
         //Convert elapsed time into 0.0 -> 1.0 progress
-        animationProgress = Math.min((float) elapsedTime / animationDuration, 1.0f);
+        animationProgress =
+                Math.min(
+                        (float) elapsedTime / animationDuration,
+                        1.0f
+                );
 
         //Calculate the phones current Y pos
         int currentY =
                 (int) (startY +
                         (targetY - startY) * animationProgress);
+
+
 
         ResourceLocation texture;
 
