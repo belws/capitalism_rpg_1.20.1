@@ -2,6 +2,7 @@ package github.belws.crpg.item.custom.helper;
 
 import github.belws.crpg.CapitalismRpg;
 import github.belws.crpg.item.ModItems;
+import github.belws.crpg.keybinds.ModKeybinds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -23,6 +24,8 @@ public class PhoneOverlay {
     private static long animationStartTime = 0;
     private static final long animationDuration = 300;
 
+    private static int selectedApp = 0;
+
     private static final ResourceLocation PHONE_TEXTURE =
             new ResourceLocation(
                     CapitalismRpg.MOD_ID,
@@ -33,6 +36,12 @@ public class PhoneOverlay {
             new ResourceLocation(
                     CapitalismRpg.MOD_ID,
                     "gui/phone_off_idle.png"
+            );
+
+    private static final ResourceLocation CLOCK_APP_TEXTURE =
+            new ResourceLocation(
+                    CapitalismRpg.MOD_ID,
+                    "gui/app1-clock.png"
             );
 
     @SubscribeEvent
@@ -61,6 +70,26 @@ public class PhoneOverlay {
             phoneWasHeld = true;
             animationStartTime =
                     System.currentTimeMillis();
+        }
+
+        if (Minecraft.getInstance().screen == null) {
+            if (ModKeybinds.PHONE_LEFT.consumeClick()) {
+                Log.info("Left Key pressed!");
+                selectedApp--;
+
+                if (selectedApp < 0) {
+                    selectedApp = 0;
+                }
+            }
+            if (ModKeybinds.PHONE_RIGHT.consumeClick()) {
+
+                Log.info("Right Key pressed!");
+                selectedApp++;
+                //Number of current apps
+                if (selectedApp > 1) {
+                    selectedApp = 1;
+                }
+            }
         }
 
         int phoneWidth = 256;
@@ -110,5 +139,38 @@ public class PhoneOverlay {
                 phoneWidth,
                 phoneHeight
         );
+
+        ResourceLocation appTexture = CLOCK_APP_TEXTURE;
+        ResourceLocation anotherAppTexture = CLOCK_APP_TEXTURE;
+
+        int appX = targetX + 64;
+        int appY = currentY + 80;
+        int appSpacing = 48;
+
+        for (int i = 0; i < 2; i++) {
+            int x = appX + i * appSpacing;
+
+            guiGraphics.blit(
+                    appTexture,
+                    x,
+                    appY,
+                    0,
+                    0,
+                    32,
+                    32,
+                    32,
+                    32
+            );
+            if (i == selectedApp) {
+                guiGraphics.renderOutline(
+                        x-2,
+                        appY -2,
+                        36,
+                36,
+                0xFFFFFFFF
+                );
+            }
+
+        }
     }
 }
