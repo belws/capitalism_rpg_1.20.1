@@ -159,7 +159,6 @@ public class PhoneOverlay {
         );
 
         ResourceLocation appTexture = CLOCK_APP_TEXTURE;
-        ResourceLocation anotherAppTexture = CLOCK_APP_TEXTURE;
 
         int appX = targetX + 64;
         int appY = currentY + 80;
