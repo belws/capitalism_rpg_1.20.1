@@ -28,6 +28,7 @@ public class PhoneOverlay {
     private static final long animationDuration = 300;
 
     private static int selectedApp = 0;
+    private static App activeApp = null;
 
     private static final ResourceLocation PHONE_TEXTURE =
             new ResourceLocation(
@@ -213,5 +214,12 @@ public class PhoneOverlay {
         int minutes = (int) ((timeOfDay % 1000) * 60 / 1000);
 
         return String.format("%02d:%02d", hours, minutes);
+    }
+
+    public static void openApp(App app) {
+        activeApp = app;
+    }
+    public static void closeApp(){
+        activeApp = null;
     }
 }
