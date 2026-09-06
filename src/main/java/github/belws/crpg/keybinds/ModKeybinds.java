@@ -33,6 +33,13 @@ public class ModKeybinds {
             "key.categories.capitalismrpg"
     );
 
+    public static final KeyMapping APP_OPEN = new KeyMapping(
+            "key.capitalismrpg.app_open",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_ENTER,
+            "key.categories.capitalismrpg"
+    );
+
     public static void register() {
 
     }
