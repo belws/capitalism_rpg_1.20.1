@@ -39,11 +39,18 @@ public class PhoneOverlay {
                     "gui/phone_off_idle.png"
             );
 
-    private static final ResourceLocation CLOCK_APP_TEXTURE =
+    private static final ResourceLocation[] APP_TEXTURES = {
             new ResourceLocation(
                     CapitalismRpg.MOD_ID,
-                    "gui/app1-clock.png"
-            );
+                    "gui/apps/app1-clock.png"
+            ),
+            new ResourceLocation(
+                    CapitalismRpg.MOD_ID,
+                    "gui/apps/app2-npc-manager.png"
+            )
+    };
+
+
 
     @SubscribeEvent
     public static void renderPhone(RenderGuiEvent.Post event) throws InterruptedException {
@@ -158,14 +165,16 @@ public class PhoneOverlay {
                 0xFFFFFF
         );
 
-        ResourceLocation appTexture = CLOCK_APP_TEXTURE;
 
+        //APP
         int appX = targetX + 64;
         int appY = currentY + 80;
         int appSpacing = 48;
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < APP_TEXTURES.length; i++) {
             int x = appX + i * appSpacing;
+
+            ResourceLocation appTexture = APP_TEXTURES[i];
 
             guiGraphics.blit(
                     appTexture,
