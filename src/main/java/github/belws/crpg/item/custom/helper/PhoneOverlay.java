@@ -85,7 +85,6 @@ public class PhoneOverlay {
 
         if (Minecraft.getInstance().screen == null) {
             if (ModKeybinds.PHONE_LEFT.consumeClick()) {
-                Log.info("Left Key pressed!");
                 selectedApp--;
 
                 if (selectedApp < 0) {
@@ -94,11 +93,10 @@ public class PhoneOverlay {
             }
             if (ModKeybinds.PHONE_RIGHT.consumeClick()) {
 
-                Log.info("Right Key pressed!");
                 selectedApp++;
                 //Number of current apps
-                if (selectedApp > 1) {
-                    selectedApp = 1;
+                if (selectedApp >= APP_TEXTURES.length) {
+                    selectedApp = APP_TEXTURES.length - 1;
                 }
             }
         }
