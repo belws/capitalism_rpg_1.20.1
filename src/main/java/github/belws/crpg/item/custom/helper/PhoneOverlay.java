@@ -1,6 +1,9 @@
 package github.belws.crpg.item.custom.helper;
 
 import github.belws.crpg.CapitalismRpg;
+import github.belws.crpg.apps.App;
+import github.belws.crpg.apps.ClockApp;
+import github.belws.crpg.apps.NpcManagerApp;
 import github.belws.crpg.item.ModItems;
 import github.belws.crpg.keybinds.ModKeybinds;
 import net.minecraft.client.Minecraft;
@@ -11,7 +14,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.jline.utils.Log;
 
 import static java.lang.Thread.sleep;
 
@@ -39,15 +41,10 @@ public class PhoneOverlay {
                     "gui/phone_off_idle.png"
             );
 
-    private static final ResourceLocation[] APP_TEXTURES = {
-            new ResourceLocation(
-                    CapitalismRpg.MOD_ID,
-                    "gui/apps/app1-clock.png"
-            ),
-            new ResourceLocation(
-                    CapitalismRpg.MOD_ID,
-                    "gui/apps/app2-npc-manager.png"
-            )
+    private static final App[] APPS = {
+            new ClockApp(),
+            new NpcManagerApp()
+
     };
 
 
@@ -95,9 +92,13 @@ public class PhoneOverlay {
 
                 selectedApp++;
                 //Number of current apps
-                if (selectedApp >= APP_TEXTURES.length) {
-                    selectedApp = APP_TEXTURES.length - 1;
+                if (selectedApp >= APPS.length) {
+                    selectedApp = APPS.length - 1;
                 }
+            }
+            if (ModKeybinds.APP_OPEN.consumeClick()) {
+
+                APPS[selectedApp].open();
             }
         }
 
@@ -169,13 +170,15 @@ public class PhoneOverlay {
         int appY = currentY + 80;
         int appSpacing = 48;
 
-        for (int i = 0; i < APP_TEXTURES.length; i++) {
+        for (int i = 0; i < APPS.length; i++) {
+
+            App app = APPS[i];
+
             int x = appX + i * appSpacing;
 
-            ResourceLocation appTexture = APP_TEXTURES[i];
 
             guiGraphics.blit(
-                    appTexture,
+                    app.getIconTexture(),
                     x,
                     appY,
                     0,
