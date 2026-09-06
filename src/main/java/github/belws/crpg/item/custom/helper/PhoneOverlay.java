@@ -147,11 +147,14 @@ public class PhoneOverlay {
         // Draw time
         String time = getGameTime();
 
+        int timeX = targetX + phoneWidth - 75;
+        int timeY = currentY + 50;
+
         guiGraphics.drawString(
                 font,
                 time,
-                targetX,
-                currentY,
+                timeX,
+                timeY,
                 0xFFFFFF
         );
 
