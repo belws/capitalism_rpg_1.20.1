@@ -4,6 +4,7 @@ import github.belws.crpg.CapitalismRpg;
 import github.belws.crpg.item.ModItems;
 import github.belws.crpg.keybinds.ModKeybinds;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,6 +47,9 @@ public class PhoneOverlay {
 
     @SubscribeEvent
     public static void renderPhone(RenderGuiEvent.Post event) throws InterruptedException {
+        Minecraft minecraft = Minecraft.getInstance();
+        Font font = minecraft.font;
+
 
         GuiGraphics guiGraphics = event.getGuiGraphics();
 
@@ -140,6 +144,17 @@ public class PhoneOverlay {
                 phoneHeight
         );
 
+        // Draw time
+        String time = getGameTime();
+
+        guiGraphics.drawString(
+                font,
+                time,
+                targetX,
+                currentY,
+                0xFFFFFF
+        );
+
         ResourceLocation appTexture = CLOCK_APP_TEXTURE;
         ResourceLocation anotherAppTexture = CLOCK_APP_TEXTURE;
 
@@ -172,5 +187,19 @@ public class PhoneOverlay {
             }
 
         }
+    }
+    private static String getGameTime(){
+        Minecraft minecraft = Minecraft.getInstance();
+
+        if (minecraft.level == null) {
+            return "00:00";
+        }
+
+        long timeOfDay = minecraft.level.getDayTime() % 24000;
+
+        int hours = (int) ((timeOfDay / 1000 + 6) % 24);
+        int minutes = (int) ((timeOfDay % 1000) * 60 / 1000);
+
+        return String.format("%02d:%02d", hours, minutes);
     }
 }
