@@ -11,7 +11,12 @@ public class NpcManagerApp extends App {
                 new ResourceLocation(
                         CapitalismRpg.MOD_ID,
                         "gui/apps/app2-npc-manager.png"
+                ),
+                new ResourceLocation(
+                        CapitalismRpg.MOD_ID,
+                        "gui/appScreens/npc-manager-app-placeholder.png"
                 )
+
         );
     }
 

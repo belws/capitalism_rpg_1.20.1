@@ -14,6 +14,10 @@ public class ClockApp extends App {
                 new ResourceLocation(
                         CapitalismRpg.MOD_ID,
                         "gui/apps/app1-clock.png"
+                ),
+                new ResourceLocation(
+                        CapitalismRpg.MOD_ID,
+                        "gui/appScreens/clock-app-screen.png"
                 )
         );
     }

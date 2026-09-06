@@ -6,10 +6,12 @@ public abstract class App {
 
     private final String name;
     private  final ResourceLocation iconTexture;
+    private final ResourceLocation appScreen;
 
-    public App(String name, ResourceLocation iconTexture) {
+    public App(String name, ResourceLocation iconTexture, ResourceLocation appScreen) {
         this.name = name;
         this.iconTexture = iconTexture;
+        this.appScreen = appScreen;
     }
 
     // Getters
@@ -20,6 +22,8 @@ public abstract class App {
     public ResourceLocation getIconTexture() {
         return iconTexture;
     }
+
+    public ResourceLocation getAppScreen() {return appScreen;}
 
     public abstract void open();
 }
