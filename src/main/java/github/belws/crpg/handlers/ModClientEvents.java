@@ -17,5 +17,6 @@ public class ModClientEvents {
         event.register(ModKeybinds.PHONE_DOWN);
         event.register(ModKeybinds.PHONE_LEFT);
         event.register(ModKeybinds.PHONE_RIGHT);
+        event.register((ModKeybinds.APP_OPEN));
     }
 }
