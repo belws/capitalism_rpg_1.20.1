@@ -1,5 +1,6 @@
 package github.belws.crpg.apps;
 
+import github.belws.crpg.item.custom.helper.PhoneOverlay;
 import net.minecraft.resources.ResourceLocation;
 
 public abstract class App {
@@ -25,5 +26,7 @@ public abstract class App {
 
     public ResourceLocation getAppScreen() {return appScreen;}
 
-    public abstract void open();
+    public void open(){
+        PhoneOverlay.openApp(this);
+    }
 }
