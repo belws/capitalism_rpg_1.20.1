@@ -98,8 +98,11 @@ public class PhoneOverlay {
                 }
             }
             if (ModKeybinds.APP_OPEN.consumeClick()) {
-
-                APPS[selectedApp].open();
+                if(activeApp == null){
+                    APPS[selectedApp].open();
+                } else {
+                    closeApp(); //Enter closes the app for now
+                }
             }
         }
 
@@ -137,7 +140,11 @@ public class PhoneOverlay {
         if (animationProgress < 1.0f) {
             texture = PHONE_OFF_TEXTURE;
         }
-        else {
+        // If no app is opened already open the app
+        else if (activeApp != null) {
+            texture = activeApp.getAppScreen();
+
+        } else {
             texture = PHONE_TEXTURE;
         }
 
@@ -171,34 +178,38 @@ public class PhoneOverlay {
         int appY = currentY + 80;
         int appSpacing = 48;
 
-        for (int i = 0; i < APPS.length; i++) {
+        // Handle removing drawn apps from screen if an app is opened
+        if (animationProgress >= 1.0f && activeApp == null) {
 
-            App app = APPS[i];
+            for (int i = 0; i < APPS.length; i++) {
 
-            int x = appX + i * appSpacing;
+                App app = APPS[i];
+
+                int x = appX + i * appSpacing;
 
 
-            guiGraphics.blit(
-                    app.getIconTexture(),
-                    x,
-                    appY,
-                    0,
-                    0,
-                    32,
-                    32,
-                    32,
-                    32
-            );
-            if (i == selectedApp) {
-                guiGraphics.renderOutline(
-                        x-2,
-                        appY -2,
-                        36,
-                36,
-                0xFFFFFFFF
+                guiGraphics.blit(
+                        app.getIconTexture(),
+                        x,
+                        appY,
+                        0,
+                        0,
+                        32,
+                        32,
+                        32,
+                        32
                 );
-            }
+                if (i == selectedApp) {
+                    guiGraphics.renderOutline(
+                            x - 2,
+                            appY - 2,
+                            36,
+                            36,
+                            0xFFFFFFFF
+                    );
+                }
 
+            }
         }
     }
     private static String getGameTime(){
