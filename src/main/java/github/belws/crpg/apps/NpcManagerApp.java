@@ -22,6 +22,7 @@ public class NpcManagerApp extends App {
 
     @Override
     public void open() {
+        super.open();
         Log.info("Opening NPC Manager App");
     }
 }
