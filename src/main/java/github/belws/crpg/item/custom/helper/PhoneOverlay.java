@@ -100,8 +100,11 @@ public class PhoneOverlay {
             if (ModKeybinds.APP_OPEN.consumeClick()) {
                 if(activeApp == null){
                     APPS[selectedApp].open();
-                } else {
-                    closeApp(); //Enter closes the app for now
+                }
+            }
+            if (activeApp != null) {
+                if (ModKeybinds.APP_EXIT.consumeClick()) {
+                    closeApp();
                 }
             }
         }
