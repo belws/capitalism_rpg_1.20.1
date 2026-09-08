@@ -1,9 +1,9 @@
-package github.belws.crpg.item.custom.helper;
+package github.belws.crpg.item.custom.phone.helper;
 
 import github.belws.crpg.CapitalismRpg;
-import github.belws.crpg.apps.App;
-import github.belws.crpg.apps.ClockApp;
-import github.belws.crpg.apps.NpcManagerApp;
+import github.belws.crpg.item.custom.phone.apps.App;
+import github.belws.crpg.item.custom.phone.apps.ClockApp;
+import github.belws.crpg.item.custom.phone.apps.NpcManagerApp;
 import github.belws.crpg.item.ModItems;
 import github.belws.crpg.keybinds.ModKeybinds;
 import net.minecraft.client.Minecraft;

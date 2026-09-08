@@ -1,4 +1,4 @@
-package github.belws.crpg.item.custom.event;
+package github.belws.crpg.item.custom.phone.event;
 
 import github.belws.crpg.CapitalismRpg;
 import github.belws.crpg.item.ModItems;

@@ -1,11 +1,8 @@
-package github.belws.crpg.apps;
+package github.belws.crpg.item.custom.phone.apps;
 
 import github.belws.crpg.CapitalismRpg;
-import net.minecraft.client.multiplayer.ClientRegistryLayer;
 import net.minecraft.resources.ResourceLocation;
 import org.jline.utils.Log;
-
-import java.util.Locale;
 
 public class ClockApp extends App {
     public ClockApp() {

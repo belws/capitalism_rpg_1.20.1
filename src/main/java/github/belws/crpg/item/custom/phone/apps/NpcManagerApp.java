@@ -1,4 +1,4 @@
-package github.belws.crpg.apps;
+package github.belws.crpg.item.custom.phone.apps;
 
 import github.belws.crpg.CapitalismRpg;
 import net.minecraft.resources.ResourceLocation;

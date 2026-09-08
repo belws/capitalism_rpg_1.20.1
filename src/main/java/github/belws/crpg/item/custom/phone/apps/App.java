@@ -1,6 +1,6 @@
-package github.belws.crpg.apps;
+package github.belws.crpg.item.custom.phone.apps;
 
-import github.belws.crpg.item.custom.helper.PhoneOverlay;
+import github.belws.crpg.item.custom.phone.helper.PhoneOverlay;
 import net.minecraft.resources.ResourceLocation;
 
 public abstract class App {
