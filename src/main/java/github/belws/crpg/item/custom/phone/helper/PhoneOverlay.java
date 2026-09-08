@@ -2,8 +2,6 @@ package github.belws.crpg.item.custom.phone.helper;
 
 import github.belws.crpg.CapitalismRpg;
 import github.belws.crpg.item.custom.phone.apps.App;
-import github.belws.crpg.item.custom.phone.apps.ClockApp;
-import github.belws.crpg.item.custom.phone.apps.NpcManagerApp;
 import github.belws.crpg.item.ModItems;
 import github.belws.crpg.keybinds.ModKeybinds;
 import net.minecraft.client.Minecraft;
@@ -25,8 +23,6 @@ public class PhoneOverlay {
     private static long animationStartTime = 0;
     private static final long animationDuration = 300;
 
-    private static int selectedApp = 0;
-
     private static final ResourceLocation PHONE_TEXTURE =
             new ResourceLocation(
                     CapitalismRpg.MOD_ID,
@@ -39,11 +35,6 @@ public class PhoneOverlay {
                     "gui/phone_off_idle.png"
             );
 
-    private static final App[] APPS = {
-            new ClockApp(),
-            new NpcManagerApp()
-
-    };
 
 
 
@@ -80,23 +71,18 @@ public class PhoneOverlay {
 
         if (Minecraft.getInstance().screen == null) {
             if (ModKeybinds.PHONE_LEFT.consumeClick()) {
-                selectedApp--;
-
-                if (selectedApp < 0) {
-                    selectedApp = 0;
+                if(PhoneController.getActiveApp() == null) {
+                    PhoneController.selectPreviousApp();
                 }
             }
             if (ModKeybinds.PHONE_RIGHT.consumeClick()) {
-
-                selectedApp++;
-                //Number of current apps
-                if (selectedApp >= APPS.length) {
-                    selectedApp = APPS.length - 1;
+                if (PhoneController.getActiveApp() == null){
+                    PhoneController.selectNextApp();
                 }
             }
             if (ModKeybinds.PHONE_CONFIRM.consumeClick()) {
                 if(PhoneController.getActiveApp() == null){
-                    APPS[selectedApp].open();
+                    PhoneController.openSelectedApp();
                 }
             }
             if (PhoneController.getActiveApp() != null) {
@@ -181,9 +167,9 @@ public class PhoneOverlay {
         // Handle removing drawn apps from screen if an app is opened
         if (animationProgress >= 1.0f && PhoneController.getActiveApp() == null) {
 
-            for (int i = 0; i < APPS.length; i++) {
+            for (int i = 0; i < PhoneController.getAppCount(); i++) {
 
-                App app = APPS[i];
+                App app = PhoneController.getApp(i);
 
                 int x = appX + i * appSpacing;
 
@@ -199,7 +185,7 @@ public class PhoneOverlay {
                         32,
                         32
                 );
-                if (i == selectedApp) {
+                if (i == PhoneController.getSelectedAppIndex()) {
                     guiGraphics.renderOutline(
                             x - 2,
                             appY - 2,
