@@ -97,7 +97,7 @@ public class PhoneOverlay {
                     selectedApp = APPS.length - 1;
                 }
             }
-            if (ModKeybinds.APP_OPEN.consumeClick()) {
+            if (ModKeybinds.PHONE_CONFIRM.consumeClick()) {
                 if(activeApp == null){
                     APPS[selectedApp].open();
                 }
