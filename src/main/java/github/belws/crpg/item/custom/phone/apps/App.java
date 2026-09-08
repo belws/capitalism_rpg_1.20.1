@@ -1,5 +1,6 @@
 package github.belws.crpg.item.custom.phone.apps;
 
+import github.belws.crpg.item.custom.phone.helper.PhoneAction;
 import github.belws.crpg.item.custom.phone.helper.PhoneOverlay;
 import net.minecraft.resources.ResourceLocation;
 
@@ -28,5 +29,9 @@ public abstract class App {
 
     public void open(){
         PhoneOverlay.openApp(this);
+    }
+
+    public void handleAction(PhoneAction action) {
+        //Apps can override this to handle their own behavior
     }
 }
