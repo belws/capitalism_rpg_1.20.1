@@ -15,8 +15,6 @@ import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static java.lang.Thread.sleep;
-
 @Mod.EventBusSubscriber(
         modid = CapitalismRpg.MOD_ID,
         value = Dist.CLIENT
@@ -28,7 +26,6 @@ public class PhoneOverlay {
     private static final long animationDuration = 300;
 
     private static int selectedApp = 0;
-    private static App activeApp = null;
 
     private static final ResourceLocation PHONE_TEXTURE =
             new ResourceLocation(
@@ -98,13 +95,13 @@ public class PhoneOverlay {
                 }
             }
             if (ModKeybinds.PHONE_CONFIRM.consumeClick()) {
-                if(activeApp == null){
+                if(PhoneController.getActiveApp() == null){
                     APPS[selectedApp].open();
                 }
             }
-            if (activeApp != null) {
+            if (PhoneController.getActiveApp() != null) {
                 if (ModKeybinds.APP_EXIT.consumeClick()) {
-                    closeApp();
+                    PhoneController.closeApp();
                 }
             }
         }
@@ -144,8 +141,8 @@ public class PhoneOverlay {
             texture = PHONE_OFF_TEXTURE;
         }
         // If no app is opened already open the app
-        else if (activeApp != null) {
-            texture = activeApp.getAppScreen();
+        else if (PhoneController.getActiveApp() != null) {
+            texture = PhoneController.getActiveApp().getAppScreen();
 
         } else {
             texture = PHONE_TEXTURE;
@@ -182,7 +179,7 @@ public class PhoneOverlay {
         int appSpacing = 48;
 
         // Handle removing drawn apps from screen if an app is opened
-        if (animationProgress >= 1.0f && activeApp == null) {
+        if (animationProgress >= 1.0f && PhoneController.getActiveApp() == null) {
 
             for (int i = 0; i < APPS.length; i++) {
 
@@ -228,12 +225,5 @@ public class PhoneOverlay {
         int minutes = (int) ((timeOfDay % 1000) * 60 / 1000);
 
         return String.format("%02d:%02d", hours, minutes);
-    }
-
-    public static void openApp(App app) {
-        activeApp = app;
-    }
-    public static void closeApp(){
-        activeApp = null;
     }
 }
