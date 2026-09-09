@@ -60,7 +60,30 @@ public abstract class App {
     }
 
     public void handleAction(PhoneAction action) {
-        //Apps can override this to handle their own behavior
+        if (elements.isEmpty()) {
+            return;
+        }
+
+        switch (action) {
+            case LEFT -> {
+                selectedElementIndex = Math.max(
+                        0,
+                        selectedElementIndex - 1
+                );
+            }
+            case RIGHT -> {
+                selectedElementIndex = Math.min(
+                        elements.size() - 1,
+                        selectedElementIndex + 1
+                );
+            }
+            default -> {
+                ScreenElement selectedElement =
+                        elements.get(selectedElementIndex);
+
+                selectedElement.handleAction(action);
+            }
+        }
     }
 
     protected void addElement(ScreenElement element) {
