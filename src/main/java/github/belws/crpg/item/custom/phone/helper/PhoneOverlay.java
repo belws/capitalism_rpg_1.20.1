@@ -39,7 +39,7 @@ public class PhoneOverlay {
 
 
     @SubscribeEvent
-    public static void renderPhone(RenderGuiEvent.Post event) throws InterruptedException {
+    public static void renderPhone(RenderGuiEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
         Font font = minecraft.font;
 
