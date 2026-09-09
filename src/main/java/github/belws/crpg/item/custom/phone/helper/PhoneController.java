@@ -40,11 +40,12 @@ public class PhoneController {
 
 
     public static void openSelectedApp() {
-        APPS[selectedApp].open();
+        openApp(APPS[selectedApp]);
     }
 
     public static void openApp(App app) {
         activeApp = app;
+        app.onOpen();
     }
 
     public static void closeApp() {
