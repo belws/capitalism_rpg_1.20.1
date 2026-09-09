@@ -4,6 +4,8 @@ import github.belws.crpg.item.custom.phone.helper.PhoneAction;
 import github.belws.crpg.item.custom.phone.helper.PhoneController;
 import github.belws.crpg.item.custom.phone.helper.PhoneOverlay;
 import github.belws.crpg.item.custom.phone.ui.ScreenElement;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
@@ -21,6 +23,25 @@ public abstract class App {
         this.name = name;
         this.iconTexture = iconTexture;
         this.appScreen = appScreen;
+    }
+
+    public void render(
+            GuiGraphics graphics,
+            Font font,
+            int phoneX,
+            int phoneY
+    ) {
+        for (int i = 0; i < elements.size(); i++) {
+            ScreenElement element = elements.get(i);
+
+            element.render(
+                    graphics,
+                    font,
+                    phoneX,
+                    phoneY,
+                    i == selectedElementIndex
+            );
+        }
     }
 
     // Getters
