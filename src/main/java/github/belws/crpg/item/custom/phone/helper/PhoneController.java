@@ -27,9 +27,7 @@ public class PhoneController {
         return APPS.length;
     }
 
-    public static App getApp(int index) {
-        return APPS[index];
-    }
+    public static App getApp(int index) { return APPS[index]; }
 
     public static void selectPreviousApp() {
         selectedApp = Math.max(0, selectedApp -1);
@@ -51,5 +49,25 @@ public class PhoneController {
 
     public static void closeApp() {
         activeApp = null;
+    }
+
+    public static void handleAction(PhoneAction action) {
+        if (activeApp != null) {
+            if (action == PhoneAction.BACK) {
+                closeApp();
+            } else {
+                activeApp.handleAction(action);
+            }
+            return;
+        }
+
+        switch (action) {
+            case LEFT -> selectPreviousApp();
+            case RIGHT -> selectNextApp();
+            case CONFIRM -> openSelectedApp();
+            default -> {
+                //Other actions do nothing on the home screen
+            }
+        }
     }
 }
