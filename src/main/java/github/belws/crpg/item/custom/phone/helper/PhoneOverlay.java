@@ -69,26 +69,6 @@ public class PhoneOverlay {
                     System.currentTimeMillis();
         }
 
-        if (Minecraft.getInstance().screen == null) {
-            if (ModKeybinds.PHONE_LEFT.consumeClick()) {
-                PhoneController.handleAction(PhoneAction.LEFT);
-            }
-            if (ModKeybinds.PHONE_RIGHT.consumeClick()) {
-                PhoneController.handleAction(PhoneAction.RIGHT);
-            }
-            if (ModKeybinds.PHONE_UP.consumeClick()) {
-                PhoneController.handleAction(PhoneAction.UP);
-            }
-            if (ModKeybinds.PHONE_DOWN.consumeClick()) {
-                PhoneController.handleAction(PhoneAction.DOWN);
-            }
-            if (ModKeybinds.PHONE_CONFIRM.consumeClick()) {
-                PhoneController.handleAction(PhoneAction.CONFIRM);
-            }
-            if (ModKeybinds.PHONE_BACK.consumeClick()) {
-                PhoneController.handleAction(PhoneAction.BACK);
-            }
-        }
 
         int phoneWidth = 256;
         int phoneHeight = 256;
