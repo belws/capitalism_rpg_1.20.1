@@ -71,24 +71,22 @@ public class PhoneOverlay {
 
         if (Minecraft.getInstance().screen == null) {
             if (ModKeybinds.PHONE_LEFT.consumeClick()) {
-                if(PhoneController.getActiveApp() == null) {
-                    PhoneController.selectPreviousApp();
-                }
+                PhoneController.handleAction(PhoneAction.LEFT);
             }
             if (ModKeybinds.PHONE_RIGHT.consumeClick()) {
-                if (PhoneController.getActiveApp() == null){
-                    PhoneController.selectNextApp();
-                }
+                PhoneController.handleAction(PhoneAction.RIGHT);
+            }
+            if (ModKeybinds.PHONE_UP.consumeClick()) {
+                PhoneController.handleAction(PhoneAction.UP);
+            }
+            if (ModKeybinds.PHONE_DOWN.consumeClick()) {
+                PhoneController.handleAction(PhoneAction.DOWN);
             }
             if (ModKeybinds.PHONE_CONFIRM.consumeClick()) {
-                if(PhoneController.getActiveApp() == null){
-                    PhoneController.openSelectedApp();
-                }
+                PhoneController.handleAction(PhoneAction.CONFIRM);
             }
-            if (PhoneController.getActiveApp() != null) {
-                if (ModKeybinds.APP_EXIT.consumeClick()) {
-                    PhoneController.closeApp();
-                }
+            if (ModKeybinds.APP_EXIT.consumeClick()) {
+                PhoneController.handleAction(PhoneAction.BACK);
             }
         }
 
