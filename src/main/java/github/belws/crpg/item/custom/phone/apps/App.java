@@ -28,8 +28,8 @@ public abstract class App {
 
     public ResourceLocation getAppScreen() {return appScreen;}
 
-    public void open(){
-        PhoneController.openApp(this);
+    public void onOpen() {
+        // Optional setup when this app is opened
     }
 
     public void handleAction(PhoneAction action) {
