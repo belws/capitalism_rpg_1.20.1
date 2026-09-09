@@ -18,10 +18,4 @@ public class ClockApp extends App {
                 )
         );
     }
-
-    @Override
-    public void open() {
-        super.open();
-        Log.info("Opening Clock App");
-    }
 }
