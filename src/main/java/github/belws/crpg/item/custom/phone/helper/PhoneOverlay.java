@@ -3,7 +3,6 @@ package github.belws.crpg.item.custom.phone.helper;
 import github.belws.crpg.CapitalismRpg;
 import github.belws.crpg.item.custom.phone.apps.App;
 import github.belws.crpg.item.ModItems;
-import github.belws.crpg.keybinds.ModKeybinds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
