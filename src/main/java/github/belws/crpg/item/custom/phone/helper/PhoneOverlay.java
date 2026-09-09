@@ -141,15 +141,13 @@ public class PhoneOverlay {
         int appY = currentY + 80;
         int appSpacing = 48;
 
-        // Handle removing drawn apps from screen if an app is opened
-        if (animationProgress >= 1.0f && PhoneController.getActiveApp() == null) {
+        //Draw icons
+        if (animationProgress >= 1.0f
+                && PhoneController.getActiveApp() == null) {
 
             for (int i = 0; i < PhoneController.getAppCount(); i++) {
-
                 App app = PhoneController.getApp(i);
-
                 int x = appX + i * appSpacing;
-
 
                 guiGraphics.blit(
                         app.getIconTexture(),
@@ -162,18 +160,19 @@ public class PhoneOverlay {
                         32,
                         32
                 );
+
                 if (i == PhoneController.getSelectedAppIndex()) {
                     guiGraphics.renderOutline(
                             x - 2,
                             appY - 2,
                             36,
                             36,
-                            0xFFFFFFFF
+                            0xFFFFFF
                     );
                 }
-
             }
         }
+
     }
     private static String getGameTime(){
         Minecraft minecraft = Minecraft.getInstance();
