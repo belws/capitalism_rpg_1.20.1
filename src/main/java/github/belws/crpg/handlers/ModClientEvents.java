@@ -18,6 +18,6 @@ public class ModClientEvents {
         event.register(ModKeybinds.PHONE_LEFT);
         event.register(ModKeybinds.PHONE_RIGHT);
         event.register((ModKeybinds.PHONE_CONFIRM));
-        event.register((ModKeybinds.APP_EXIT));
+        event.register((ModKeybinds.PHONE_BACK));
     }
 }

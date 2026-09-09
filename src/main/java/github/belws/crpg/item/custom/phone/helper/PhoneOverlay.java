@@ -85,7 +85,7 @@ public class PhoneOverlay {
             if (ModKeybinds.PHONE_CONFIRM.consumeClick()) {
                 PhoneController.handleAction(PhoneAction.CONFIRM);
             }
-            if (ModKeybinds.APP_EXIT.consumeClick()) {
+            if (ModKeybinds.PHONE_BACK.consumeClick()) {
                 PhoneController.handleAction(PhoneAction.BACK);
             }
         }

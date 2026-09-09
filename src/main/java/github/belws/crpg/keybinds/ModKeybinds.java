@@ -40,7 +40,7 @@ public class ModKeybinds {
             "key.categories.capitalismrpg"
     );
 
-    public static final KeyMapping APP_EXIT = new KeyMapping(
+    public static final KeyMapping PHONE_BACK = new KeyMapping(
             "key.capitalismrpg.app_exit",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_BACKSPACE,

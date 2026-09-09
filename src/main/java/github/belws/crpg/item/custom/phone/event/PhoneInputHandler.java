@@ -37,7 +37,7 @@ public class PhoneInputHandler {
         consumeAction(ModKeybinds.PHONE_UP, PhoneAction.UP, canUsePhone);
         consumeAction(ModKeybinds.PHONE_DOWN, PhoneAction.DOWN, canUsePhone);
         consumeAction(ModKeybinds.PHONE_CONFIRM, PhoneAction.CONFIRM, canUsePhone);
-        consumeAction(ModKeybinds.APP_EXIT, PhoneAction.BACK, canUsePhone);
+        consumeAction(ModKeybinds.PHONE_BACK, PhoneAction.BACK, canUsePhone);
     }
 
     private static void consumeAction(
