@@ -3,6 +3,8 @@ package github.belws.crpg.item.custom.phone.apps;
 import github.belws.crpg.CapitalismRpg;
 import github.belws.crpg.item.custom.phone.ui.ButtonElement;
 import github.belws.crpg.item.custom.phone.ui.NumberElement;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import org.jline.utils.Log;
 
@@ -52,6 +54,28 @@ public class ClockApp extends App {
 
         addElement(hourElement);
         addElement(minuteElement);
+    }
+
+    @Override
+    public void render(
+            GuiGraphics graphics,
+            Font font,
+            int phoneX,
+            int phoneY
+    ) {
+        super.render(graphics, font, phoneX, phoneY);
+
+        String status = alarmSet
+                ? String.format("Alarm: %02d:%02d", alarmHour, alarmMinute)
+                : "No alarm set";
+
+        graphics.drawCenteredString(
+                font,
+                status,
+                phoneX + 125,
+                phoneY + 145,
+                0xFFFFFF
+        );
     }
 
     private void createAlarm() {
