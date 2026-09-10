@@ -173,6 +173,11 @@ public class PhoneOverlay {
             }
         }
 
+        App activeApp = PhoneController.getActiveApp();
+
+        if (animationProgress >= 1.0f && activeApp != null) {
+            activeApp.render(guiGraphics, font, targetX, currentY);
+        }
     }
     private static String getGameTime(){
         Minecraft minecraft = Minecraft.getInstance();
