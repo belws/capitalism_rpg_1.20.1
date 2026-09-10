@@ -30,15 +30,19 @@ public class ClockApp extends App {
                 () -> Log.info("Test Add Alarm Pressed")
         ));
 
+        //TODO: add container to constructor either as boolean or argb
+        //
+        // I will eventually make it so the outline wont be displayed for this.
+        // Also I might change the index version of element selection to loop
         hourElement = new NumberElement(
-                40, 100, 70, 20,
-                "Hour",
+                70, 100, 70, 20,
+                "H",
                 0, 23, 6
         );
 
         minuteElement = new NumberElement(
-                100, 100, 70, 20,
-                "Minute",
+                120, 100, 70, 20,
+                "M",
                 0,59,0
         );
 
