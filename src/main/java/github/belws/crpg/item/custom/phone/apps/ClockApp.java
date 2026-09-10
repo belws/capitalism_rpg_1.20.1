@@ -11,6 +11,10 @@ public class ClockApp extends App {
     private final NumberElement hourElement;
     private final NumberElement minuteElement;
 
+    private int alarmHour;
+    private int alarmMinute;
+    private boolean alarmSet = false;
+
     public ClockApp() {
         super(
                 "Clock",
@@ -27,7 +31,7 @@ public class ClockApp extends App {
         addElement(new ButtonElement(
                 70,180,110,20,
                 "Add Alarm",
-                () -> Log.info("Test Add Alarm Pressed")
+                this::createAlarm
         ));
 
         //TODO: add container to constructor either as boolean or argb
@@ -48,5 +52,18 @@ public class ClockApp extends App {
 
         addElement(hourElement);
         addElement(minuteElement);
+    }
+
+    private void createAlarm() {
+        alarmHour = hourElement.getValue();
+        alarmMinute = minuteElement.getValue();
+        alarmSet = true;
+
+        //Test
+        System.out.printf(
+                "Alarm set for %02d:%02d%n",
+                alarmHour,
+                alarmMinute
+        );
     }
 }
