@@ -37,7 +37,7 @@ public class ButtonElement extends ScreenElement {
                     drawY,
                     width,
                     height,
-                    0xFFFFFF
+                    0xFFFFFFFF
             );
         }
 
@@ -46,7 +46,7 @@ public class ButtonElement extends ScreenElement {
                 label,
                 drawX + width / 2,
                 drawY + (height - font.lineHeight) / 2,
-                selected ? 0xFFFFFF : 0xFFFFFF
+                selected ? 0xFFFF55 : 0xFFFFFF
         );
     }
 

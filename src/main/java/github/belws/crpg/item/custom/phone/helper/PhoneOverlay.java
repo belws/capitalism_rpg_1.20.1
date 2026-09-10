@@ -167,7 +167,7 @@ public class PhoneOverlay {
                             appY - 2,
                             36,
                             36,
-                            0xFFFFFF
+                            0xFFFFFFFF
                     );
                 }
             }
