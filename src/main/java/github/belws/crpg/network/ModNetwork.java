@@ -42,5 +42,14 @@ public class ModNetwork {
                 WakeUpSettingsPacket::handle,
                 Optional.of(NetworkDirection.PLAY_TO_CLIENT)
         );
+
+        CHANNEL.registerMessage(
+                2,
+                RequestWakeUpSettingsPacket.class,
+                RequestWakeUpSettingsPacket::encode,
+                RequestWakeUpSettingsPacket::decode,
+                RequestWakeUpSettingsPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
     }
 }

@@ -1,9 +1,11 @@
 package github.belws.crpg.item.custom.phone.apps;
 
 import github.belws.crpg.CapitalismRpg;
+import github.belws.crpg.client.ClientWakeUpState;
 import github.belws.crpg.item.custom.phone.ui.ButtonElement;
 import github.belws.crpg.item.custom.phone.ui.NumberElement;
 import github.belws.crpg.network.ModNetwork;
+import github.belws.crpg.network.RequestWakeUpSettingsPacket;
 import github.belws.crpg.network.SetWakeUpTimePacket;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -94,6 +96,15 @@ public class ClockApp extends App {
                 "Alarm set for %02d:%02d%n",
                 alarmHour,
                 alarmMinute
+        );
+    }
+
+    @Override
+    public void onOpen() {
+        ClientWakeUpState.reset();
+
+        ModNetwork.CHANNEL.sendToServer(
+                new RequestWakeUpSettingsPacket()
         );
     }
 }
