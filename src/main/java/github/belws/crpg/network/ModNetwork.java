@@ -1,6 +1,7 @@
 package github.belws.crpg.network;
 
 import github.belws.crpg.CapitalismRpg;
+import github.belws.crpg.sleep.WakeUpSettings;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
@@ -31,6 +32,15 @@ public class ModNetwork {
                 SetWakeUpTimePacket::decode,
                 SetWakeUpTimePacket::handle,
                 Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
+
+        CHANNEL.registerMessage(
+                1,
+                WakeUpSettingsPacket.class,
+                WakeUpSettingsPacket::encode,
+                WakeUpSettingsPacket::decode,
+                WakeUpSettingsPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
         );
     }
 }
