@@ -5,6 +5,7 @@ import github.belws.crpg.sleep.WakeUpSettings;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.function.Supplier;
 
@@ -38,19 +39,27 @@ public record SetWakeUpTimePacket(int hour, int minute) {
                 return;
             }
 
-            if (!SleepRules.allowsCustomWakeUp(player.getServer())) {
-                return;
+            boolean allowed =
+                    SleepRules.allowsCustomWakeUp(player.getServer());
+
+            boolean validTime =
+                    packet.hour() < 0 || packet.hour() > 23
+                            || packet.minute() < 0 || packet.minute() > 59;
+
+            if (allowed && validTime) {
+                WakeUpSettings.setWakeUpTime(
+                        player,
+                        packet.hour(),
+                        packet.minute()
+                );
             }
 
-            if (packet.hour() < 0 || packet.hour() > 23
-                    || packet.minute() < 0 || packet.minute() > 59) {
-                return;
-            }
-
-            WakeUpSettings.setWakeUpTime(
-                    player,
-                    packet.hour(),
-                    packet.minute()
+            ModNetwork.CHANNEL.send(
+                    PacketDistributor.PLAYER.with(() -> player),
+                    new WakeUpSettingsPacket(
+                            allowed,
+                            WakeUpSettings.getWakeUpMinutes(player)
+                    )
             );
         });
 
