@@ -2,8 +2,11 @@ package github.belws.crpg.network;
 
 import github.belws.crpg.CapitalismRpg;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
+
+import java.util.Optional;
 
 public class ModNetwork {
 
@@ -21,6 +24,13 @@ public class ModNetwork {
     }
 
     public static void register() {
-        // Register message types
+        CHANNEL.registerMessage(
+                0,
+                SetWakeUpTimePacket.class,
+                SetWakeUpTimePacket::encode,
+                SetWakeUpTimePacket::decode,
+                SetWakeUpTimePacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
     }
 }
