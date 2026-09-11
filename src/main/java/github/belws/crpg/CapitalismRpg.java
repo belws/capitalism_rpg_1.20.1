@@ -2,6 +2,7 @@ package github.belws.crpg;
 
 import com.mojang.logging.LogUtils;
 import github.belws.crpg.item.ModItems;
+import github.belws.crpg.network.ModNetwork;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -44,7 +45,7 @@ public class CapitalismRpg
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
+        event.enqueueWork(ModNetwork::register);
     }
 
     // Add the example block item to the building blocks tab
