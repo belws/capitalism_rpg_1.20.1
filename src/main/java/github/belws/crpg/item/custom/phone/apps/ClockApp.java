@@ -3,6 +3,8 @@ package github.belws.crpg.item.custom.phone.apps;
 import github.belws.crpg.CapitalismRpg;
 import github.belws.crpg.item.custom.phone.ui.ButtonElement;
 import github.belws.crpg.item.custom.phone.ui.NumberElement;
+import github.belws.crpg.network.ModNetwork;
+import github.belws.crpg.network.SetWakeUpTimePacket;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -81,8 +83,12 @@ public class ClockApp extends App {
     private void createAlarm() {
         alarmHour = hourElement.getValue();
         alarmMinute = minuteElement.getValue();
-        alarmSet = true;
 
+        ModNetwork.CHANNEL.sendToServer(
+                new SetWakeUpTimePacket(alarmHour, alarmMinute)
+        );
+
+        alarmSet = true;
         //Test
         System.out.printf(
                 "Alarm set for %02d:%02d%n",
