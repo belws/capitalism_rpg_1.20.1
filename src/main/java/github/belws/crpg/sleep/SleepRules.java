@@ -9,6 +9,6 @@ public final class SleepRules {
     public static boolean allowsCustomWakeUp(MinecraftServer server) {
         return server != null
                 && server.isSingleplayer()
-                && server.isPublished();
+                && !server.isPublished();
     }
 }
