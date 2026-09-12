@@ -10,16 +10,12 @@ import github.belws.crpg.network.SetWakeUpTimePacket;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
-import org.jline.utils.Log;
 
 public class ClockApp extends App {
 
     private final NumberElement hourElement;
     private final NumberElement minuteElement;
 
-    private int alarmHour;
-    private int alarmMinute;
-    private boolean alarmSet = false;
 
     public ClockApp() {
         super(
