@@ -43,8 +43,8 @@ public record SetWakeUpTimePacket(int hour, int minute) {
                     SleepRules.allowsCustomWakeUp(player.getServer());
 
             boolean validTime =
-                    packet.hour() < 0 || packet.hour() > 23
-                            || packet.minute() < 0 || packet.minute() > 59;
+                    packet.hour() >= 0 || packet.hour() <= 23
+                            || packet.minute() >= 0 || packet.minute() <= 59;
 
             if (allowed && validTime) {
                 WakeUpSettings.setWakeUpTime(
