@@ -69,10 +69,25 @@ public class ClockApp extends App {
     ) {
         super.render(graphics, font, phoneX, phoneY);
 
-        String status = alarmSet
-                ? String.format("Alarm: %02d:%02d", alarmHour, alarmMinute)
-                : "No alarm set";
+        String status;
 
+        if (!ClientWakeUpState.hasReceivedSettings()) {
+            status = "Loading...";
+        } else if (!ClientWakeUpState.isCustomWakeUpAllowed()) {
+            status = "Single-player only";
+        } else {
+            int minutes = ClientWakeUpState.getWakeUpMinutes();
+
+            if (minutes == -1) {
+                status = "No alarm set";
+            } else {
+                status = String.format(
+                        "Alarm: %02d:%02d",
+                        minutes / 60,
+                        minutes % 60
+                );
+            }
+        }
         graphics.drawCenteredString(
                 font,
                 status,
@@ -83,19 +98,26 @@ public class ClockApp extends App {
     }
 
     private void createAlarm() {
-        alarmHour = hourElement.getValue();
-        alarmMinute = minuteElement.getValue();
+        if (!ClientWakeUpState.hasReceivedSettings()
+            || !ClientWakeUpState.isCustomWakeUpAllowed()) {
+            return;
+        }
+
+        int hour = hourElement.getValue();
+        int minute = minuteElement.getValue();
+
+        ClientWakeUpState.reset();
+
 
         ModNetwork.CHANNEL.sendToServer(
-                new SetWakeUpTimePacket(alarmHour, alarmMinute)
+                new SetWakeUpTimePacket(hour, minute)
         );
 
-        alarmSet = true;
         //Test
         System.out.printf(
                 "Alarm set for %02d:%02d%n",
-                alarmHour,
-                alarmMinute
+                hour,
+                minute
         );
     }
 
